@@ -1,0 +1,68 @@
+{
+  "name": "reason-to-do",
+  "version": "1.0.0",
+  "scripts": {
+    "buckle": "bsb -make-world -w",
+    "js": "bsb -make-world",
+    "build": "cross-env NODE_ENV=qa webpack --mode development",
+    "build:qa": "cross-env NODE_ENV=qa webpack --mode development",
+    "build:prod": "cross-env NODE_ENV=prod webpack --mode production",
+    "watch": "cross-env NODE_ENV=qa webpack -w --mode development",
+    "start": "cross-env NODE_ENV=qa webpack-dev-server --mode development --open",
+    "clean": "bsb -clean-world && rimraf lib && rimraf dist",
+    "develop": "npm run buckle & npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BenjaminEarley/TodoApp.git"
+  },
+  "keywords": [
+    "todo",
+    "ReasonML"
+  ],
+  "author": "Benjamin Earley",
+  "license": "MIT",
+  "homepage": "https://github.com/BenjaminEarley/TodoApp",
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "reason-react": "^0.3.4"
+  },
+  "devDependencies": {
+    "@material/base": "^0.35.0",
+    "@material/card": "^0.36.1",
+    "@material/checkbox": "^0.36.1",
+    "@material/form-field": "^0.36.0",
+    "@material/textfield": "^0.36.1",
+    "@material/theme": "^0.35.0",
+    "@material/typography": "^0.35.0",
+    "autoprefixer": "^8.6.4",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "bs-platform": "^2.2.3",
+    "copy-webpack-plugin": "^4.5.2",
+    "cross-env": "^5.2.0",
+    "css-loader": "^0.28.11",
+    "extract-loader": "^2.0.1",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.0",
+    "node-sass": "^4.9.0",
+    "optimize-css-assets-webpack-plugin": "^4.0.3",
+    "postcss-loader": "^2.1.5",
+    "precss": "^3.1.2",
+    "rimraf": "^2.6.2",
+    "sass-loader": "^7.0.3",
+    "style-loader": "^0.21.0",
+    "uglifyjs-webpack-plugin": "^1.2.7",
+    "webpack": "^4.14.0",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  }
+}

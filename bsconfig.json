@@ -1,0 +1,12 @@
+{
+  "name": "reason-to-do",
+  "reason": {
+    "react-jsx": 2
+  },
+  "refmt": 3,
+  "bs-dependencies": ["reason-react"],
+  "sources": [{
+    "dir": "src/script",
+    "subdirs": true
+  }]
+}
