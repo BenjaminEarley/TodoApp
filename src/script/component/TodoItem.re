@@ -2,17 +2,17 @@ open Item;
 open Util;
 
 let component = ReasonReact.statelessComponent("TodoItem");
-let make = (~item, ~onToggle, children) => {
+let make = (~item, ~onToggle, ~onDelete, children) => {
   ...component,
   render: (_) => {
-    let checkbox = "checkbox-" ++ string_of_int(item.id);
+    let checkboxId = "checkbox-" ++ string_of_int(item.id);
     <div className="item mdc-form-field">
       <div className="mdc-checkbox">
         <input 
           _type="checkbox" 
           className="mdc-checkbox__native-control" 
           onClick=((evt) => onToggle())
-          id=checkbox 
+          id=checkboxId 
           checked=(Js.Boolean.to_js_boolean(item.completed))/>
         <div className="mdc-checkbox__background">
           <svg className="mdc-checkbox__checkmark" 
@@ -24,7 +24,8 @@ let make = (~item, ~onToggle, children) => {
           <div className="mdc-checkbox__mixedmark"/>
         </div>
       </div>
-      <label htmlFor=checkbox>(str(item.title))</label>
+      <label htmlFor=checkboxId>(str(item.title))</label>
+      <i onClick=((evt) => onDelete()) className="material-icons md-18 light">(str("clear"))</i>
     </div>
   }
 };

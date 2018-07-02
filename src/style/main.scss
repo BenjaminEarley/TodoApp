@@ -9,6 +9,9 @@ $mdc-typography-styles-headline5: (
 );
 
 @import url("https://fonts.googleapis.com/css?family=Libre+Franklin|Merriweather");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import "@material/floating-label/mdc-floating-label";
+@import "@material/line-ripple/mdc-line-ripple";
 @import "@material/form-field/mdc-form-field";
 @import "@material/typography/mdc-typography";
 @import "@material/textfield/mdc-text-field";
@@ -69,4 +72,14 @@ div {
 input[type="text"] {
   align-self: stretch;
   text-align: center;
+}
+
+.material-icons {
+  cursor: default;
+  &.md-18 {
+    font-size: 18px;
+  }
+  &.light {
+    color: #e0e0e0;
+  }
 }

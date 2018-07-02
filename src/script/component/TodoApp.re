@@ -6,7 +6,8 @@ type state = {
 };
 type action =
   | AddItem(string)
-  | ToggleItem(int);
+  | ToggleItem(int)
+  | DeleteItem(int);
 
 let component = ReasonReact.reducerComponent("TodoApp");
 
@@ -31,7 +32,13 @@ let make = (children) => {
               {...item, completed: ! item.completed} : item,
           items
         );
-        Js.log(items);
+      ReasonReact.Update({items: items})
+    | DeleteItem(id) =>
+      let items =
+        List.filter(
+          (item) => item.id === id ? false : true,
+          items
+        );
       ReasonReact.Update({items: items})
     },
   render: ({state: {items}, reduce}) => {
@@ -48,6 +55,7 @@ let make = (children) => {
               <TodoItem
                 key=(string_of_int(item.id))
                 onToggle=(reduce(() => ToggleItem(item.id)))
+                onDelete=(reduce(() => DeleteItem(item.id)))
                 item
               />,
             items
