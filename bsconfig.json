@@ -4,9 +4,11 @@
     "react-jsx": 2
   },
   "refmt": 3,
-  "bs-dependencies": ["reason-react"],
-  "sources": [{
-    "dir": "src/script",
-    "subdirs": true
-  }]
+  "bs-dependencies": ["reason-react", "@justgage/reason-cookie"],
+  "sources": [
+    {
+      "dir": "src/script",
+      "subdirs": true
+    }
+  ]
 }

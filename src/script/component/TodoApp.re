@@ -11,19 +11,40 @@ type action =
 
 let component = ReasonReact.reducerComponent("TodoApp");
 
-let lastId = ref(0);
+let savedList = 
+  switch(getSavedItems()) {
+    | Some(serializedItems) => {
+      switch(deserialize(serializedItems)) {
+        | Some(items) => items
+        | None => []
+      }
+    }
+    | None => []
+  }; 
+
+let lastId = List.fold_left(
+    (acc, x) => if (x.id > acc) x.id else acc,
+    0, 
+    savedList
+  ) |> ref;
+
+/* let lastId = ref(0); */
 let newItem = (text) => {
   lastId := lastId^ + 1;
   {id: lastId^, title: text, completed: false}
 };
+
 let make = (children) => {
   ...component,
   initialState: () => {
-    items: []
+    items: savedList
   },
   reducer: (action, {items}) =>
     switch action {
-    | AddItem(text) => ReasonReact.Update({items: [newItem(text), ...items]})
+    | AddItem(text) => 
+      let items = [newItem(text), ...items];
+      saveItems(items);
+      ReasonReact.Update({items: items})
     | ToggleItem(id) =>
       let items =
         List.map(
@@ -32,6 +53,7 @@ let make = (children) => {
               {...item, completed: ! item.completed} : item,
           items
         );
+      saveItems(items);
       ReasonReact.Update({items: items})
     | DeleteItem(id) =>
       let items =
@@ -39,6 +61,7 @@ let make = (children) => {
           (item) => item.id === id ? false : true,
           items
         );
+      saveItems(items);
       ReasonReact.Update({items: items})
     },
   render: ({state: {items}, reduce}) => {

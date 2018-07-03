@@ -11,7 +11,7 @@ let make = (~item, ~onToggle, ~onDelete, children) => {
         <input 
           _type="checkbox" 
           className="mdc-checkbox__native-control" 
-          onClick=((evt) => onToggle())
+          onChange=((evt) => onToggle())
           id=checkboxId 
           checked=(Js.Boolean.to_js_boolean(item.completed))/>
         <div className="mdc-checkbox__background">
